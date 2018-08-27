@@ -127,9 +127,13 @@ freqtab <- function(x, caption = '', digits = 1, order = '', valid.only = F, per
           tb <- tb[, 1:2] 
           valid.only <- F
      }
-     if (valid.only) tb <- tb[, c(1, 2, 4)]
+     if (valid.only) {
+       tb <- tb[, c(1, 2, 4)]
+       cnames <- c('', 'Frequency', vperc)
+     } else {
+       cnames <- c('', 'Frequency', perc, vperc)
+     }
      
-     cnames <- c('', 'Frequency', perc, vperc)
      options(knitr.kable.NA = '')
      return(knitr::kable(tb, digits = digits, row.names = NA, col.names = cnames, caption = caption))
 }
